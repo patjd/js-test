@@ -18,8 +18,9 @@
  * @param {T} value
  * @returns {void}
  */
+const map = new WeakMap();
 export function setData(object, value) {
-  // …
+  map.set(object, value);
 }
 
 /**
@@ -30,5 +31,5 @@ export function setData(object, value) {
  * @returns {T | undefined}
  */
 export function getData(object) {
-  return /* … */;
+  return map.get(object);
 }

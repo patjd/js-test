@@ -22,9 +22,14 @@
  * @returns {F}
  */
 export function once(callback) {
+  let result;
   return (...args) => {
     // `callback` must be called once!
     // Its return value must be memoized.
-    return callback(...args);
+    if(callback) {
+      result = callback(...args);
+      callback = null;
+    }
+    return result;
   };
 }

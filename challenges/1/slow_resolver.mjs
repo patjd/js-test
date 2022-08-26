@@ -51,8 +51,14 @@ export async function loadUsers(context, ids) {
     // FIXME: Why is it so slow??!
     // TODO: Use `context.redis.get` and `context.redis.set`.
     // This might not be enough…
-    let user = await context.db.get(id);
-    users.push(user ?? null);
+    let record = await context.redis.get(id);
+    if(record) {
+      users.push(record);
+    } else {
+      let user = await context.db.get(id);
+      context.redis.set(id, user ?? null);
+      users.push(user ?? null);
+    }
   }
 
   return users;

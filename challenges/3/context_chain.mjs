@@ -34,5 +34,11 @@
  */
 export function createContext(parentOrData, data) {
   // FIXME: I have no clue…
-  return parentOrData ?? data;
+  const context = Object.create(parentOrData);
+  if(data) {
+    for(let key in data) {
+      context[key] = data[key];
+    }
+  } 
+  return context;
 }
