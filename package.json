@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#internal/*": "./internal/*.mjs"
+  },
+  "scripts": {
+    "test": "uvu challenges '.test.mjs$'"
+  },
+  "engines": {
+    "node": ">=16.8.0"
+  },
+  "dependencies": {
+    "uvu": "^0.5.3"
+  }
+}
